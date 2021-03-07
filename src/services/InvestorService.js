@@ -4,5 +4,5 @@
  import axios from 'axios'
 
  export default {
-     // calculate investor info
+    // calculate investor info
  }
