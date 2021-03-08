@@ -5,7 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 function App() {
   return (
     <ChakraProvider>
-      <InvestorForm></InvestorForm>      
+      <InvestorForm className="App"></InvestorForm>      
     </ChakraProvider >
   );
 }
