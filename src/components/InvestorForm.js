@@ -1,31 +1,63 @@
 import React from 'react';
-
+import '../App.css';
 import { useForm } from 'react-hook-form';
+import InvestorService from '../services/InvestorService';
 
 import {
+    Box,
     Container,
     FormControl,
     FormLabel,
     FormErrorMessage,
     Heading,
     Input,
+    InputGroup,
+    InputLeftElement,
     Button,
-  } from "@chakra-ui/react"
+  } from "@chakra-ui/react";
 
 export default function InvestorForm (props) {
     const {register, handleSubmit, errors, formState } = useForm();
 
-    const onSubmit = (data) => alert(JSON.stringify(data));
+    async function onSubmit (data) {
+        const payload = {
+            investmentAmount: data.investmentAmount,
+            investmentType: data.investmentType,
+            totalNetWorth: data.totalNetWorth,
+            estimatedCreditScore: data.estimatedCreditScore,
+            estimatedYearlyIncome: data.estimatedYearlyIncome
+        };
+        
+        try {
+            const investmentServiceResponse = await InvestorService.calculate(payload);
+
+            //if (investmentServiceResponse.status === 200) {
+            if (investmentServiceResponse) {
+                console.log("Success");
+            }
+            //; do stuff with response
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
-        <div>
-            <Container centerContent>
-                <Heading as="h1">Investor Application Form</Heading>
+        <Container centerContent>
+            <Box maxW="lg" borderWidth="1px" borderRadius="lg" p={5} shadow="lg" bg="gray.50">
+                <Heading as="h1" className="investor-form-header">
+                    Investor Application Form
+                </Heading>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl isInvalid={errors.investmentAmount}>
-                        <FormLabel >
+                        <FormLabel alignItems="center">
+                            <InputGroup>
+                                <InputLeftElement pointerEvents="none"
+                                    color="gray"
+                                    fontSize="1.2em"
+                                    children="$"/>
+                                <Input name="investmentAmount" type="number" variant="flushed" ref={register({required: "Investment Amount is required."})}/>
+                            </InputGroup>
                             Investment Amount
-                            <Input name="investmentAmount" type="number" ref={register({required: "Investment Amount is required."})}/>
                         </FormLabel >
                         <FormErrorMessage>
                             {errors.investmentAmount?.message}
@@ -33,8 +65,8 @@ export default function InvestorForm (props) {
                     </FormControl>
                     <FormControl isInvalid={errors.investmentType}>
                         <FormLabel >
+                            <Input name="investmentType" type="text" variant="flushed" ref={register({required: "Investment Type is required."})}/>
                             Investment Type
-                            <Input name="investmentType" type="text" ref={register({required: "Investment Type is required."})}/>
                         </FormLabel >
                         <FormErrorMessage>
                             {errors.investmentType?.message}
@@ -42,8 +74,14 @@ export default function InvestorForm (props) {
                     </FormControl>
                     <FormControl isInvalid={errors.totalNetWorth}>
                         <FormLabel >
+                            <InputGroup>
+                                <InputLeftElement pointerEvents="none"
+                                    color="gray"
+                                    fontSize="1.2em"
+                                    children="$"/>
+                                <Input name="totalNetWorth" type="number" variant="flushed" ref={register({required: "Total Net Worth is required."})}/>
+                            </InputGroup>
                             Total Net Worth
-                            <Input name="totalNetWorth" type="number" ref={register({required: "Total Net Worth is required."})}/>
                         </FormLabel >
                         <FormErrorMessage>
                             {errors.totalNetWorth?.message}
@@ -51,8 +89,14 @@ export default function InvestorForm (props) {
                     </FormControl>
                     <FormControl isInvalid={errors.estimatedYearlyIncome}>    
                         <FormLabel >
+                            <InputGroup>
+                                <InputLeftElement pointerEvents="none"
+                                    color="gray"
+                                    fontSize="1.2em"
+                                    children="$"/>
+                                <Input name="estimatedYearlyIncome" type="number" variant="flushed" ref={register({required: "Estimated Yearly Income is required."})}/>
+                            </InputGroup>
                             Estimated Yearly Income
-                            <Input name="estimatedYearlyIncome" type="number" ref={register({required: "Estimated Yearly Income is required."})}/>
                         </FormLabel >
                         <FormErrorMessage>
                             {errors.estimatedYearlyIncome?.message}
@@ -60,8 +104,7 @@ export default function InvestorForm (props) {
                     </FormControl>
                     <FormControl isInvalid={errors.estimatedCreditScore}>
                         <FormLabel >
-                            Estimated Credit Score
-                            <Input name="estimatedCreditScore" type="number"
+                            <Input name="estimatedCreditScore" type="number" variant="flushed"
                                 ref={register({
                                     required: "Estimated Credit Score is required", 
                                     min: {
@@ -74,21 +117,25 @@ export default function InvestorForm (props) {
                                     }
                                 })
                             }/>
+                            Estimated Credit Score
                         </FormLabel >
                         <FormErrorMessage>
                             {errors.estimatedCreditScore?.message}
                         </FormErrorMessage>
                     </FormControl>
-                    <Button colorScheme="teal"
+                    <Button alignItems="center"
+                            className="investor-form-submit-button"
+                            colorScheme="teal"
                             isLoading={formState.isSubmitting}
                             loadingText="Submitting"
+                            mt={5}
                             size="md"
                             type="submit"
-                            width="full">
+                            width="50%">
                         Submit
                     </Button>
                 </form>
-            </Container>
-        </div>
+            </Box>
+        </Container>
     )
 }

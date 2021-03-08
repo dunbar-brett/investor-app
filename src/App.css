@@ -1,3 +1,18 @@
 .App {
   padding-top: 4rem;
 }
+
+
+.investor-form-header {
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.investor-form-submit-button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+form {
+  text-align: center;
+}
