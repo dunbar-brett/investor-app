@@ -1,11 +1,12 @@
 import './App.css';
 import InvestorForm from './components/InvestorForm';
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <div className="App">
+    <ChakraProvider>
       <InvestorForm></InvestorForm>      
-    </div>
+    </ChakraProvider >
   );
 }
 
