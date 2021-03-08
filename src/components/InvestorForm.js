@@ -16,26 +16,26 @@ export default function InvestorForm (props) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
                     Investment Amount
-                    <input name="investmentAmount" type="number" ref={register({required: true})}/>
-                    {errors.investmentAmount && <span>Investment Amount is Required</span>}
+                    <input name="investmentAmount" type="number" ref={register({required: "Investment Amount is required."})}/>
+                    {errors.investmentAmount?.message}
                 </label>
                 <br/>
                 <label>
                     Investment Type
-                    <input name="investmentType" type="text" ref={register({required: true})}/>
-                    <span>{errors.investmentType && "Investment Type is Required"}</span>
+                    <input name="investmentType" type="text" ref={register({required: "Investment Type is required."})}/>
+                    {errors.investmentType?.message}
                 </label>
                 <br/>
                 <label>
                     Total Net Worth
                     <input name="totalNetWorth" type="number" ref={register({required: true})}/>
-                    <span>{errors.investmentType && "Investment Type is Required"}</span>
+                    {errors.estimatedYearlyIncome?.message}
                 </label>
                 <br/>
                 <label>
                     Estimated Yearly Income
-                    <input name="investmentType" type="text" ref={register({required: true})}/>
-                    <span>{errors.investmentType && "Investment Type is Required"}</span>
+                    <input name="estimatedYearlyIncome" type="number" ref={register({required: "Estimated Yearly Income is required."})}/>
+                    {errors.estimatedYearlyIncome?.message}
                 </label>
                 <br/>
                 <label>
