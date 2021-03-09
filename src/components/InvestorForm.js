@@ -5,7 +5,7 @@ import InvestorService from '../services/InvestorService';
 
 import {
     Box,
-    Container,
+    Center,
     FormControl,
     FormLabel,
     FormErrorMessage,
@@ -14,7 +14,7 @@ import {
     InputGroup,
     InputLeftElement,
     Button,
-  } from "@chakra-ui/react";
+  } from '@chakra-ui/react';
 
 export default function InvestorForm (props) {
     const {register, handleSubmit, errors, formState } = useForm();
@@ -33,7 +33,7 @@ export default function InvestorForm (props) {
 
             //if (investmentServiceResponse.status === 200) {
             if (investmentServiceResponse) {
-                console.log("Success");
+                console.log('Success');
             }
             //; do stuff with response
         } catch (error) {
@@ -42,8 +42,9 @@ export default function InvestorForm (props) {
     }
 
     return (
-        <Container centerContent>
-            <Box maxW="lg" borderWidth="1px" borderRadius="lg" p={5} shadow="lg" bg="gray.50">
+        <Center>
+            <Box minW="md" minH="full" maxH="full" borderWidth="1px" borderRadius="lg"
+                 p={5} shadow="lg" bg="gray.50">
                 <Heading as="h1" className="investor-form-header">
                     Investor Application Form
                 </Heading>
@@ -136,6 +137,6 @@ export default function InvestorForm (props) {
                     </Button>
                 </form>
             </Box>
-        </Container>
+        </Center>
     )
 }
