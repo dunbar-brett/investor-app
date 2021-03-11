@@ -5,6 +5,7 @@ import InvestorService from '../services/InvestorService';
 
 import {
     Box,
+    Button,
     Center,
     FormControl,
     FormLabel,
@@ -13,7 +14,6 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
-    Button,
   } from '@chakra-ui/react';
 
 export default function InvestorForm (props) {
