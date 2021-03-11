@@ -8,12 +8,11 @@ import {
 } from '@chakra-ui/react';
 
 export default function MarketingCopy () {
-
     return (
         <Center>
             <Box maxW="xl" borderWidth="1px" borderRadius="lg"
                  p={5} shadow="lg" bg="gray.50" maxH="full">
-                <Heading pb={2}>
+                <Heading as="h1" pb={2}>
                     Startupsum
                 </Heading>
                 <Text>
