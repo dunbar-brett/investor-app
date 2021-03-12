@@ -21,11 +21,11 @@ const SPECIAL_CHAR_REGEX = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/;
 
 
 export default function UserForm () {
-	const { register, handleSubmit, errors, formState, getValues } = useForm();
+	const { register, handleSubmit, errors, formState, getValues, reset } = useForm();
 
 	function onSubmit (data) {
-		console.log(data);
-		alert('User Created!')
+		alert('User Created!');
+		reset();
 	}
 
 	function validateEmail (value) {
