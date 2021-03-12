@@ -13,9 +13,9 @@ import UserRegistration from './UserRegistration';
 export default function Home () {
     return (
         <Center minHeight='40vh'>
-            {/* <MarketingCopy />
-            <InvestorForm /> */}
-            <UserRegistration></UserRegistration>
+            <MarketingCopy />
+            <InvestorForm />
+            {/* <UserRegistration></UserRegistration> */}
         </Center>
     )
 }

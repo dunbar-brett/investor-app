@@ -21,10 +21,11 @@ const SPECIAL_CHAR_REGEX = /[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/;
 
 
 export default function UserForm () {
-	const { register, handleSubmit, errors, formState } = useForm();
+	const { register, handleSubmit, errors, formState, getValues } = useForm();
 
 	function onSubmit (data) {
-		console.log(data)
+		console.log(data);
+		alert('User Created!')
 	}
 
 	function validateEmail (value) {
@@ -65,6 +66,16 @@ export default function UserForm () {
 		return error || true;
 	}
 
+	function validateReEntryPassword (value, allValues) {
+		if (!value) {
+			return 'Password is required.';
+		}
+
+		if (value !== allValues().password) {
+			return 'Passwords do not match.'
+		}
+
+	}
 
 
 	return (
@@ -103,6 +114,18 @@ export default function UserForm () {
 							<FormHelperText>Password must be more than 8 characters with a number and a special character.</FormHelperText>
 							<FormErrorMessage>
 								{errors.password?.message}
+							</FormErrorMessage>
+						</FormControl>
+						<FormControl isInvalid={errors.passwordReEntry}>
+							<FormLabel alignItems="center">
+								<Input name="passwordReEntry"
+											 type="password" 
+											 variant="flushed" 
+											 ref={register({ validate: (value) => validateReEntryPassword(value, getValues)})}/>
+								Re-Enter Password
+							</FormLabel >
+							<FormErrorMessage>
+								{errors.passwordReEntry?.message}
 							</FormErrorMessage>
 						</FormControl>
 						<Button alignItems="center"

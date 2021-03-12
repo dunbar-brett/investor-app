@@ -9,8 +9,8 @@ function ExportRouter (props) {
     return (
         <Router>
             <Home path='/' />
-            <Disqualified path='/' />
-            <UserRegistration></UserRegistration>
+            <Disqualified path='/disqualified' />
+            <UserRegistration path='/userRegistration'></UserRegistration>
         </Router>
     )
 }

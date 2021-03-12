@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { useForm } from 'react-hook-form';
+import { navigate } from '@reach/router';
 import InvestorService from '../services/InvestorService';
 
 import {
@@ -31,13 +32,24 @@ export default function InvestorForm (props) {
         try {
             const investmentServiceResponse = await InvestorService.calculate(payload);
 
-            //if (investmentServiceResponse.status === 200) {
-            if (investmentServiceResponse) {
-                console.log('Success');
-            }
-            //; do stuff with response
+            if (investmentServiceResponse.status === 200) {
+							console.log('Success');
+							console.log(investmentServiceResponse)
+							if (investmentServiceResponse.approved) {
+								console.log('approved');
+								navigate('/userRegistration');
+							} else {
+								console.log('declined');
+								// disqualified
+								navigate('/disqualified', {state: {message: investmentServiceResponse.message}}); 
+							}
+            } else if (investmentServiceResponse.status === 400) {
+							console.log('investment more than 9000000');
+							alert('investment more than 9000000');
+						}
         } catch (error) {
-            console.error(error)
+					console.error(error)
+					alert(error.message);
         }
     }
 
