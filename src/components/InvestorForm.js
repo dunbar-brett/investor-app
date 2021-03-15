@@ -45,10 +45,12 @@ export default function InvestorForm (props) {
 							}
             } else if (investmentServiceResponse.status === 400) {
 							console.log('investment more than 9000000');
+                            // should be updated with toast message
 							alert('investment more than 9000000');
 						}
         } catch (error) {
 					console.error(error)
+                    // should be updated with toast message
 					alert(error.message);
         }
     }

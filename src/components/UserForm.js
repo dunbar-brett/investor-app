@@ -24,15 +24,12 @@ export default function UserForm () {
 	const { register, handleSubmit, errors, formState, getValues, reset } = useForm();
 
 	function onSubmit (data) {
+		// should be updated with toast message
 		alert('User Created!');
 		reset();
 	}
 
 	function validateEmail (value) {
-		let error;
-		console.log(value);
-		console.log(!value.match(EMAIL_REGEX));
-
 		if (!value) {
 			return 'Email Address is required.'
 		}
@@ -45,8 +42,9 @@ export default function UserForm () {
 	}
 
 	function validatePassword (value) {
-		//console.log(value);
 		let error;
+		
+		// return early to show required error first
 		if (!value) {
 			return 'Password is required.';
 		}

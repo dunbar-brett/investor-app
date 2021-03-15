@@ -1,5 +1,7 @@
 /**
  * Service for investor qualification calls
+ * instead of mocking up the call here, this would be a 
+ * file for endpoints that hit an api
  */
 
 const MAX_INVESTMENT = 9000000;
